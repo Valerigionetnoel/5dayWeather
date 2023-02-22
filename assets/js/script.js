@@ -1,6 +1,19 @@
+// dayjs.extend(window.dayjs_plugin_utc);
+// dayjs.extend(window.dayjs_plugin_timezone);
+
+var date1 = dayjs().format('MM/DD/YYYY');
+var date2 = dayjs().add(1, 'day').format('MM/DD/YYYY')
+var date3 = dayjs().add(2, 'day').format('MM/DD/YYYY')
+var date4 = dayjs().add(3, 'day').format('MM/DD/YYYY')
+var date5 = dayjs().add(4, 'day').format('MM/DD/YYYY')
+var date6 = dayjs().add(5, 'day').format('MM/DD/YYYY')
+
 var cityEl = document.querySelector('#City')
 var cityForm = document.querySelector('#cityForm')
 // var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=1a94d023f0ce6163537e0b2fd1efff1c'
+
+var oldSearch = $('#old-search')
+
 var day1Temp = $('#day1-temp')
 var day1Image = $('#day1-image')
 var day1Wind = $('#day1-wind')
@@ -60,6 +73,11 @@ var cityName = function(event){
 var getCityName = function (myCity){
     var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + myCity + '&appid=1a94d023f0ce6163537e0b2fd1efff1c' + '&units=metric';
 
+    localStorage.setItem('Cities', myCity)
+    var button = document.createElement('button')
+    $(oldSearch).append(button)
+    $(button).html(myCity)
+
     fetch (apiUrl)
         .then(function(response){
             return response.json();
@@ -80,39 +98,40 @@ var getCityName = function (myCity){
                 console.log(data.list[i].main.humidity)
                 console.log(icon1)
                 console.log(data.list[i].dt_txt)
+                console.log(date1)
                 
             }
-            dateAndTime1.append(data.list[0].dt_txt)
+            dateAndTime1.append(myCity + ' ' + date1)
             day1Temp.append('Temperature: ' + data.list[0].main.temp + '°C')
             day1Image.attr('src', icon1)
             day1Wind.append('Wind: ' + data.list[0].wind.speed + ' m/s')
             day1Humidity.append('Humidity: ' + data.list[0].main.humidity + ' %')
 
-            dateAndTime2.append(data.list[8].dt_txt)
-            day2Temp.append('Temperature: ' + data.list[8].main.temp + '°C')
+            dateAndTime2.append(date2)
+            day2Temp.append('Temperature: ' + data.list[7].main.temp + '°C')
             day2Image.attr('src', icon2)
-            day2Wind.append('Wind: ' + data.list[8].wind.speed + ' m/s')
-            day2Humidity.append('Humidity: ' + data.list[8].main.humidity + ' %')
+            day2Wind.append('Wind: ' + data.list[7].wind.speed + ' m/s')
+            day2Humidity.append('Humidity: ' + data.list[7].main.humidity + ' %')
 
-            dateAndTime3.append(data.list[16].dt_txt)
-            day3Temp.append('Temperature: ' + data.list[16].main.temp + '°C')
+            dateAndTime3.append(date3)
+            day3Temp.append('Temperature: ' + data.list[15].main.temp + '°C')
             day3Image.attr('src', icon3)
-            day3Wind.append('Wind: ' + data.list[16].wind.speed + ' m/s')
-            day3Humidity.append('Humidity: ' + data.list[16].main.humidity + ' %')
+            day3Wind.append('Wind: ' + data.list[15].wind.speed + ' m/s')
+            day3Humidity.append('Humidity: ' + data.list[15].main.humidity + ' %')
 
-            dateAndTime4.append(data.list[24].dt_txt)
-            day4Temp.append('Temperature: ' + data.list[24].main.temp + '°C')
+            dateAndTime4.append(date4)
+            day4Temp.append('Temperature: ' + data.list[23].main.temp + '°C')
             day4Image.attr('src', icon4)
-            day4Wind.append('Wind: ' + data.list[24].wind.speed + ' m/s')
-            day4Humidity.append('Humidity: ' + data.list[24].main.humidity + ' %')
+            day4Wind.append('Wind: ' + data.list[23].wind.speed + ' m/s')
+            day4Humidity.append('Humidity: ' + data.list[23].main.humidity + ' %')
 
-            dateAndTime5.append(data.list[32].dt_txt)
-            day5Temp.append('Temperature: ' + data.list[32].main.temp + '°C')
+            dateAndTime5.append(date5)
+            day5Temp.append('Temperature: ' + data.list[31].main.temp + '°C')
             day5Image.attr('src', icon5)
-            day5Wind.append('Wind: ' + data.list[32].wind.speed + ' m/s')
-            day5Humidity.append('Humidity: ' + data.list[32].main.humidity + ' %')
+            day5Wind.append('Wind: ' + data.list[31].wind.speed + ' m/s')
+            day5Humidity.append('Humidity: ' + data.list[31].main.humidity + ' %')
 
-            dateAndTime6.append(data.list[39].dt_txt)
+            dateAndTime6.append(date6)
             day6Temp.append('Temperature: ' + data.list[39].main.temp + '°C')
             day6Image.attr('src', icon6)
             day6Wind.append('Wind: ' + data.list[39].wind.speed + ' m/s')
