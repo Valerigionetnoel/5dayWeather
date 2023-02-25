@@ -57,9 +57,18 @@ var icon4;
 var icon5;
 var icon6;
 
+var cityList = JSON.parse(localStorage.getItem("cityList")) || [];
+    for (var i = 0; i < cityList.length; i++){
+        // console.log(cityList)
+        var button = document.createElement('button')
+        $(oldSearch).append(button)
+        $(button).html(cityList[i]).on('click', getCityName)
+    }
+
+
 var cityName = function(event){
     event.preventDefault();
-
+    
     var city = cityEl.value.trim();
 
     if (city) {
@@ -73,6 +82,7 @@ var cityName = function(event){
     var cityList = JSON.parse(localStorage.getItem("cityList")) || [];
     cityList.push(city);
     localStorage.setItem("cityList", JSON.stringify(cityList));
+    console.log(cityList);
 
     var button = document.createElement('button')
     for (var i = 0; i < cityList.length; i++){
@@ -93,6 +103,8 @@ var getCityName = function (myCity){
     // $(button).html(myCity).on('click', getCityName)
 
     fetch (apiUrl)
+    
+    
         .then(function(response){
             return response.json();
         })
