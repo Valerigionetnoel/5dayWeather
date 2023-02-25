@@ -69,36 +69,50 @@ var cityName = function(event){
     } else {
         alert('Enter valid city')
     }
+
+    var cityList = JSON.parse(localStorage.getItem("cityList")) || [];
+    cityList.push(city);
+    localStorage.setItem("cityList", JSON.stringify(cityList));
+
+    var button = document.createElement('button')
+    for (var i = 0; i < cityList.length; i++){
+        console.log(cityList)
+        $(oldSearch).append(button)
+        $(button).html(cityList[i]).on('click', getCityName)
+    }
+
 }
 var getCityName = function (myCity){
     var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + myCity + '&appid=1a94d023f0ce6163537e0b2fd1efff1c' + '&units=metric';
 
-    localStorage.setItem('Cities', myCity)
-    var button = document.createElement('button')
-    $(oldSearch).append(button)
-    $(button).html(myCity)
+    
+
+    // localStorage.setItem('Cities', myCity)
+    // var button = document.createElement('button')
+    // $(oldSearch).append(button)
+    // $(button).html(myCity).on('click', getCityName)
 
     fetch (apiUrl)
         .then(function(response){
             return response.json();
         })
         .then(function(data){
-            console.log(data.list)
+            // console.log(data.list)
             for (var i = 0; i < data.list.length; i = i + 8){
                 //Remeber to add 8 to the [] to jump a day
                 icon1 = 'http://openweathermap.org/img/wn/' + data.list[0].weather[0].icon + '@2x.png'
-                icon2 = 'http://openweathermap.org/img/wn/' + data.list[8].weather[0].icon + '@2x.png'
-                icon3 = 'http://openweathermap.org/img/wn/' + data.list[16].weather[0].icon + '@2x.png'
-                icon4 = 'http://openweathermap.org/img/wn/' + data.list[24].weather[0].icon + '@2x.png'
-                icon5 = 'http://openweathermap.org/img/wn/' + data.list[32].weather[0].icon + '@2x.png'
+                icon2 = 'http://openweathermap.org/img/wn/' + data.list[7].weather[0].icon + '@2x.png'
+                icon3 = 'http://openweathermap.org/img/wn/' + data.list[15].weather[0].icon + '@2x.png'
+                icon4 = 'http://openweathermap.org/img/wn/' + data.list[23].weather[0].icon + '@2x.png'
+                icon5 = 'http://openweathermap.org/img/wn/' + data.list[31].weather[0].icon + '@2x.png'
                 icon6 = 'http://openweathermap.org/img/wn/' + data.list[39].weather[0].icon + '@2x.png'
-                console.log(data.list[i])
-                console.log(data.list[i].main.temp)
-                console.log(data.list[i].wind.speed)
-                console.log(data.list[i].main.humidity)
-                console.log(icon1)
-                console.log(data.list[i].dt_txt)
-                console.log(date1)
+                // console.log(data.list[i])
+                // console.log(data.list[i].main.temp)
+                // console.log(data.list[i].wind.speed)
+                // console.log(data.list[i].main.humidity)
+                // console.log(icon1)
+                // console.log(data.list[i].dt_txt)
+                // console.log(date1)
                 
             }
             dateAndTime1.append(myCity + ' ' + date1)
@@ -140,4 +154,5 @@ var getCityName = function (myCity){
     }
 
 cityForm.addEventListener('submit', cityName);
+
 
