@@ -110,7 +110,7 @@ var getCityName = function (myCity){
         })
         .then(function(data){
             // console.log(data.list)
-            for (var i = 0; i < data.list.length; i = i + 8){
+            // for (var i = 0; i < data.list.length; i = i + 8){
                 //Remeber to add 8 to the [] to jump a day
                 icon1 = 'http://openweathermap.org/img/wn/' + data.list[0].weather[0].icon + '@2x.png'
                 icon2 = 'http://openweathermap.org/img/wn/' + data.list[7].weather[0].icon + '@2x.png'
@@ -126,41 +126,72 @@ var getCityName = function (myCity){
                 // console.log(data.list[i].dt_txt)
                 // console.log(date1)
                 
-            }
+            // }
+
+            dateAndTime1.html('');
             dateAndTime1.append(myCity + ' ' + date1)
+            day1Temp.html('')
             day1Temp.append('Temperature: ' + data.list[0].main.temp + '°C')
+            day1Image.html('')
             day1Image.attr('src', icon1)
+            day1Wind.html('')
             day1Wind.append('Wind: ' + data.list[0].wind.speed + ' m/s')
+            day1Humidity.html('')
             day1Humidity.append('Humidity: ' + data.list[0].main.humidity + ' %')
 
+            dateAndTime2.html('');
             dateAndTime2.append(date2)
+            day2Temp.html('')
             day2Temp.append('Temperature: ' + data.list[7].main.temp + '°C')
+            day2Image.html('')
             day2Image.attr('src', icon2)
+            day2Wind.html('')
             day2Wind.append('Wind: ' + data.list[7].wind.speed + ' m/s')
+            day2Humidity.html('')
             day2Humidity.append('Humidity: ' + data.list[7].main.humidity + ' %')
 
+            dateAndTime3.html('');
             dateAndTime3.append(date3)
+            day3Temp.html('')
             day3Temp.append('Temperature: ' + data.list[15].main.temp + '°C')
+            day3Image.html('')
             day3Image.attr('src', icon3)
+            day3Wind.html('')
             day3Wind.append('Wind: ' + data.list[15].wind.speed + ' m/s')
+            day3Humidity.html('')
             day3Humidity.append('Humidity: ' + data.list[15].main.humidity + ' %')
 
+            dateAndTime4.html('');
             dateAndTime4.append(date4)
+            day4Temp.html('')
             day4Temp.append('Temperature: ' + data.list[23].main.temp + '°C')
+            day4Image.html('')
             day4Image.attr('src', icon4)
+            day4Wind.html('')
             day4Wind.append('Wind: ' + data.list[23].wind.speed + ' m/s')
+            day4Humidity.html('')
             day4Humidity.append('Humidity: ' + data.list[23].main.humidity + ' %')
 
+            dateAndTime5.html('');
             dateAndTime5.append(date5)
+            day5Temp.html('')
             day5Temp.append('Temperature: ' + data.list[31].main.temp + '°C')
+            day5Image.html('')
             day5Image.attr('src', icon5)
+            day5Wind.html('')
             day5Wind.append('Wind: ' + data.list[31].wind.speed + ' m/s')
+            day5Humidity.html('')
             day5Humidity.append('Humidity: ' + data.list[31].main.humidity + ' %')
 
+            dateAndTime6.html('');
             dateAndTime6.append(date6)
+            day6Temp.html('')
             day6Temp.append('Temperature: ' + data.list[39].main.temp + '°C')
+            day6Image.html('')
             day6Image.attr('src', icon6)
+            day6Wind.html('')
             day6Wind.append('Wind: ' + data.list[39].wind.speed + ' m/s')
+            day6Humidity.html('')
             day6Humidity.append('Humidity: ' + data.list[39].main.humidity + ' %')
         })
     }
