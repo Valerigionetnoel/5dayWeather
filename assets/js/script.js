@@ -57,18 +57,13 @@ var icon4;
 var icon5;
 var icon6;
 
-
-
-
 var cityName = function(event){
     event.preventDefault();
-    
-    var city = cityEl.value.trim();
 
+    var city = cityEl.value.trim();
+    
     if (city) {
         getCityName(city);
-
-        cityEl.value = '';
     } else {
         alert('Enter valid city')
     }
@@ -79,16 +74,29 @@ var cityName = function(event){
     
     var button = document.createElement('button')
     for (var i = 0; i < cityList.length; i++){
-       
         $(oldSearch).append(button)
-        $(button).html(cityList[i]).on('click', getCityName)
+        $(button)
+        .html(cityList[i])
+        .on('click', function(e){
+            let newCity = e.target.innerHTML;
+            getCityName(newCity)
+        })
     }
-
 }
 var getCityName = function (myCity){
-    var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + myCity + '&appid=1a94d023f0ce6163537e0b2fd1efff1c' + '&units=metric';
-
-    
+    if (cityEl.value === ''){
+        var apiUrl = 
+        'https://api.openweathermap.org/data/2.5/forecast?q='
+         + myCity.target.innerHTML +
+          '&appid=1a94d023f0ce6163537e0b2fd1efff1c' +
+           '&units=metric';
+    } else if (cityEl !== null){  
+    var apiUrl = 
+    'https://api.openweathermap.org/data/2.5/forecast?q=' + 
+    myCity + 
+    '&appid=1a94d023f0ce6163537e0b2fd1efff1c' + 
+    '&units=metric'; 
+}
 
     // localStorage.setItem('Cities', myCity)
     // var button = document.createElement('button')
@@ -96,8 +104,6 @@ var getCityName = function (myCity){
     // $(button).html(myCity).on('click', getCityName)
 
     fetch (apiUrl)
-    
-    
         .then(function(response){
             return response.json();
         })
@@ -186,6 +192,8 @@ var getCityName = function (myCity){
             day6Wind.append('Wind: ' + data.list[39].wind.speed + ' km/h')
             day6Humidity.html('')
             day6Humidity.append('Humidity: ' + data.list[39].main.humidity + ' %')
+
+            cityEl.value = '';
         })
     }
 
@@ -196,5 +204,4 @@ var cityList = JSON.parse(localStorage.getItem("cityList")) || [];
         var button = document.createElement('button')
         $(oldSearch).append(button)
         $(button).html(cityList[i]).on('click', getCityName)
-        console.log(cityList[i])
     }
