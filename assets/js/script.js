@@ -87,10 +87,10 @@ var getCityName = function (myCity){
     if (cityEl.value === ''){
         var apiUrl = 
         'https://api.openweathermap.org/data/2.5/forecast?q='
-         + myCity.target.innerHTML +
+         + myCity + 
           '&appid=1a94d023f0ce6163537e0b2fd1efff1c' +
            '&units=metric';
-    } else if (cityEl !== null){  
+    } else {  
     var apiUrl = 
     'https://api.openweathermap.org/data/2.5/forecast?q=' + 
     myCity + 
@@ -193,7 +193,7 @@ var getCityName = function (myCity){
             day6Humidity.html('')
             day6Humidity.append('Humidity: ' + data.list[39].main.humidity + ' %')
 
-            cityEl.value = '';
+            // cityEl.value = '';
         })
     }
 
@@ -203,5 +203,8 @@ var cityList = JSON.parse(localStorage.getItem("cityList")) || [];
     for (var i = 0; i < cityList.length; i++){
         var button = document.createElement('button')
         $(oldSearch).append(button)
-        $(button).html(cityList[i]).on('click', getCityName)
+        $(button).html(cityList[i]).on('click', function(e){
+            let newCity = e.target.innerHTML;
+            getCityName(newCity);
+        })
     }
