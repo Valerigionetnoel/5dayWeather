@@ -57,13 +57,7 @@ var icon4;
 var icon5;
 var icon6;
 
-var cityList = JSON.parse(localStorage.getItem("cityList")) || [];
-    for (var i = 0; i < cityList.length; i++){
-        // console.log(cityList)
-        var button = document.createElement('button')
-        $(oldSearch).append(button)
-        $(button).html(cityList[i]).on('click', getCityName)
-    }
+
 
 
 var cityName = function(event){
@@ -82,11 +76,10 @@ var cityName = function(event){
     var cityList = JSON.parse(localStorage.getItem("cityList")) || [];
     cityList.push(city);
     localStorage.setItem("cityList", JSON.stringify(cityList));
-    console.log(cityList);
-
+    
     var button = document.createElement('button')
     for (var i = 0; i < cityList.length; i++){
-        console.log(cityList)
+       
         $(oldSearch).append(button)
         $(button).html(cityList[i]).on('click', getCityName)
     }
@@ -135,7 +128,7 @@ var getCityName = function (myCity){
             day1Image.html('')
             day1Image.attr('src', icon1)
             day1Wind.html('')
-            day1Wind.append('Wind: ' + data.list[0].wind.speed + ' m/s')
+            day1Wind.append('Wind: ' + data.list[0].wind.speed + ' km/h')
             day1Humidity.html('')
             day1Humidity.append('Humidity: ' + data.list[0].main.humidity + ' %')
 
@@ -146,7 +139,7 @@ var getCityName = function (myCity){
             day2Image.html('')
             day2Image.attr('src', icon2)
             day2Wind.html('')
-            day2Wind.append('Wind: ' + data.list[7].wind.speed + ' m/s')
+            day2Wind.append('Wind: ' + data.list[7].wind.speed + ' km/h')
             day2Humidity.html('')
             day2Humidity.append('Humidity: ' + data.list[7].main.humidity + ' %')
 
@@ -157,7 +150,7 @@ var getCityName = function (myCity){
             day3Image.html('')
             day3Image.attr('src', icon3)
             day3Wind.html('')
-            day3Wind.append('Wind: ' + data.list[15].wind.speed + ' m/s')
+            day3Wind.append('Wind: ' + data.list[15].wind.speed + ' km/h')
             day3Humidity.html('')
             day3Humidity.append('Humidity: ' + data.list[15].main.humidity + ' %')
 
@@ -168,7 +161,7 @@ var getCityName = function (myCity){
             day4Image.html('')
             day4Image.attr('src', icon4)
             day4Wind.html('')
-            day4Wind.append('Wind: ' + data.list[23].wind.speed + ' m/s')
+            day4Wind.append('Wind: ' + data.list[23].wind.speed + ' km/h')
             day4Humidity.html('')
             day4Humidity.append('Humidity: ' + data.list[23].main.humidity + ' %')
 
@@ -179,7 +172,7 @@ var getCityName = function (myCity){
             day5Image.html('')
             day5Image.attr('src', icon5)
             day5Wind.html('')
-            day5Wind.append('Wind: ' + data.list[31].wind.speed + ' m/s')
+            day5Wind.append('Wind: ' + data.list[31].wind.speed + ' km/h')
             day5Humidity.html('')
             day5Humidity.append('Humidity: ' + data.list[31].main.humidity + ' %')
 
@@ -190,7 +183,7 @@ var getCityName = function (myCity){
             day6Image.html('')
             day6Image.attr('src', icon6)
             day6Wind.html('')
-            day6Wind.append('Wind: ' + data.list[39].wind.speed + ' m/s')
+            day6Wind.append('Wind: ' + data.list[39].wind.speed + ' km/h')
             day6Humidity.html('')
             day6Humidity.append('Humidity: ' + data.list[39].main.humidity + ' %')
         })
@@ -198,4 +191,10 @@ var getCityName = function (myCity){
 
 cityForm.addEventListener('submit', cityName);
 
-
+var cityList = JSON.parse(localStorage.getItem("cityList")) || [];
+    for (var i = 0; i < cityList.length; i++){
+        var button = document.createElement('button')
+        $(oldSearch).append(button)
+        $(button).html(cityList[i]).on('click', getCityName)
+        console.log(cityList[i])
+    }
